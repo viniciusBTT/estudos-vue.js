@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+    <div id="app">  
+        {{empresa}}, {{produto}}
+        
+    </div>
+    <div id="quadrado">
+        <span>o lado do quadrado é {{ladoQuadrado}}</span>
+        <br>
+        <span>seu perimetro é {{ladoQuadrado * 4}}</span>
+        <br>
+        <span> sua area é {{ladoQuadrado * ladoQuadrado}}</span>
+
+    </div>
+  
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+            empresa: "Apple",
+            produto: "iPhone",
+            }
+         });
+
+         const vm2 = new Vue({
+            el: "#quadrado" ,
+            data: {
+                ladoQuadrado: 10,
+            
+            }
+         })
+    </script>
+
+</body>
+</html>

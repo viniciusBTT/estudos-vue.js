@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+
+    <style>
+        .verde{
+            color: green;
+        }
+        .vermelho{
+            color: red;
+        }
+    </style>
+</head>
+
+
+<body style="background-color: black; color: white;">
+    <div id="app">
+        <a :href="link">GOOGLE</a>
+        <p :class="cor" class="ativo">Texto</p>
+
+        <br>
+
+             
+    </div>
+
+
+    <div id="exc">
+
+        <span>O maior Valor de mercado é do
+         
+        </span>
+        <div>
+            <h1>{{google.companyName}}</h1>
+            <p :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho'">{{google.marketCap}}</p>
+
+        </div>
+        <div>
+            <h1>{{apple.companyName}}</h1>
+            <h1 :class=" apple.marketCap > google.marketCap ? 'verde' : 'vermelho'">{{apple.marketCap}}</h1>
+
+        </div>
+    
+        <button @click="puxarDados">puxarDados</button>
+
+    </div>
+
+
+
+
+
+    <script>
+         const vm2 = new Vue({
+            el: "#exc",
+            data: {            
+                apple: {},
+                google: {},
+                maiorValor: "",
+
+            },
+            methods: {
+                fetchApple(){
+                    fetch("https://api.origamid.dev/stock/aapl/quote")
+                        .then(reponse => reponse.json())
+                        .then(json =>{
+                            this.apple = json;
+                        console.log(json)
+                    })
+                },
+                fetchGoogle(){
+                    fetch("https://api.origamid.dev/stock/googl/quote")
+                        .then(reponse => reponse.json())
+                        .then(json =>{
+                            this.google = json;
+                        console.log(json)
+                    })
+                },
+                puxarDados(){
+                    this.fetchApple();
+                    this.fetchGoogle();
+                
+                },
+                
+            },
+        });
+
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                link: "https://www.google.com",
+                cor: "azul",
+                comprou: true,
+                
+            },
+           
+        });
+
+    </script>
+
+</body>
+</html>

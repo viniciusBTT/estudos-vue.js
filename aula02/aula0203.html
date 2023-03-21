@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+    <div id="app">
+        
+        <button @click="incrementar" >INCREMENTAR</button>
+        <button @click="diminuir" >DIMINUIR</button>
+        {{total}}
+        <br>
+        <br>
+        <button @click="mudarNome('violçao')" >VIOLÃO</button>
+        <button @click="mudarNome('guitarra')" >guitarra</button>
+        {{instrumento}}
+        <br>
+        <br>
+
+    </div>
+
+    <div id="api">
+    
+        <p>{{acao.latestTime}}</p>
+        <p>{{acao.latestPrice}}</p>
+        <p>{{acao.companyName}}</p>
+        
+        <button @click="consumirApi">Consumir api</button>
+
+    </div>
+
+    <script>
+
+
+        const vm2 = new Vue({
+            el: "#api",
+            data: {
+                acao:{},
+            },
+            methods: {
+                consumirApi(){
+                    fetch("https://api.origamid.dev/stock/aapl/quote")
+                        .then(reponse => reponse.json())
+                        .then(json =>{
+                            this.acao = json;
+                        console.log(json)
+                    })
+                },
+            },
+       
+            
+        })
+
+        const vm = new Vue({
+          el: "#app",
+          name: "aula-0203",
+          data: {
+            total: 10,
+            instrumento: "vazio"
+          },
+          methods: {
+            incrementar(){
+                this.total++;
+                this.metodoAtivado();
+            },
+            diminuir(){
+                this.total--;
+                this.metodoAtivado();
+            },
+            mudarNome(intrumento){
+                this.instrumento = intrumento;
+                this.metodoAtivado();
+            },
+            metodoAtivado(){
+                console.log("metodo ativado");
+            },
+            
+          },
+         });
+
+    </script>
+
+</body>
+</html>
