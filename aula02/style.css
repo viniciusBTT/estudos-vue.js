@@ -1,0 +1,5 @@
+.offcanvas {
+	top: 60px;
+	bottom: 0;
+	z-index: 1032;
+}

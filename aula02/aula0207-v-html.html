@@ -5,72 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="vue.js"></script>
-    <title>Document</title>
-   
+    <title>Document</title>   
 </head>
 
 
 <body style="background-color: black; color: white;">
 
     <div id="app">
-
         <div style="background-color: white; color: black">
-            <h4>pedras {{estoquePedras}}</h4>
-            <span>{{carrinho}}</span>
+            <h4>O seu estoque de pedras é: {{estoquePedras}}</h4>
+            <span>Voce tem {{carrinho}} no seu carrinho</span>
+
+            <!--Quando houver um click no botão, ativar a função adicionarItem-->
             <button v-show="estoquePedras" @click="adicionarItem">+</button>
-            <button v-show="carrinho" @click="removeItem">-</button>
-            <span v-show="carrinho === 7"> Voce nao pode adicionar mais carrinhos</span>
+
+            <!--Quando houver um click no botão, ativar a função removerItem-->
+            <button v-show="carrinho" @click="removeItem">-</button>          
             
-           
         </div>
+        <!--Quando o carrinho estiver com 7 itens exiba a mensagem-->
+        
+        <div>
 
+            
+            <span v-show="carrinho === 7"> Voce nao pode adicionar mais carrinhos</span>
+        </div>
+    </div><!--fim do conteiner -->
 
-
-    </div>
-
-
-<!--
-  Simule a adição de um produto no carrinho
-  este produto possui estoque de 7 itens
-  (utilize a mesma ideia do contador).
-
-  Ao atingir 7 itens mostre uma mensagem informando
-  não ser possível adicinar mais do que 7 itens.
-
-  Remova também o botão de adicionar itens.
--->
-
-
-
-
-
-    <script>
-
+    <script>//Chamando o vue.js
         const vm = new Vue({
             el: '#app',
+            //declarando variaveis
             data : {
              estoquePedras: 7,
              carrinho: 0,
             },
             methods:
-            {
+            {   
                 adicionarItem(){
                     if(this.estoquePedras > 0 )
                     {
-                    this.carrinho++;
-                    this.estoquePedras--;
+                        this.carrinho++; //carrinho + 1
+                        this.estoquePedras--;//estoque - 1
                     }
                 },
                 removeItem(){
                     if(this.carrinho > 0 )
                     {
-                        this.carrinho--;
-                        this.estoquePedras++;
+                        this.carrinho--; // carrinho -1
+                        this.estoquePedras++; //estoque + 1
                     }
                 }
             },
         });
-
     </script>
 
 </body>
