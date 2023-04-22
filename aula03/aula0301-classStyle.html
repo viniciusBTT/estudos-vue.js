@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+
+    <div id="app" >
+        <p :class="cor">texto azul</p>
+        <p :class="{ ativo: estaAtivo, verde}">Texto Ativo</p>
+        <button @click="estaAtivo = !estaAtivo">Ativar / Desativar</button>
+    </div>
+
+    <script>
+        
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                instrumento: "Violão",
+                cor: "verde",
+                estaAtivo: true
+            },
+            
+        }); 
+
+       
+
+      
+
+    </script>
+     <style>
+        .vermelho{
+            color: red;
+        }
+        .verde{
+            color: green;
+        }
+        .ativo {
+            display: block;
+            background-color: red;
+        }
+    </style>
+</body>
+</html>
