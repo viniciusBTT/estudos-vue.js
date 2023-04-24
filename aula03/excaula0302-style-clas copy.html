@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+
+   
+
+
+
+
+
+
+    <div id="exc">
+            {{color}}
+        <ul :class="{column:  coluna, cor}" @click="mudarcor()" >
+            <li :style="{background: color}">Sobre</li>
+            <li :style="{background: color}">Produtos</li>
+            <li :style="{background: color}">Serviços</li>
+            <li :style="{background: color}">Contato</li>
+        </ul>
+        <button @click="coluna = !coluna">Direção da coluna</button>
+       
+    </div>
+
+    <script>
+        
+        
+        const exc = new Vue({
+            el: "#exc",
+            data: {
+                coluna: true,             
+                color: "#84e",             
+            },
+            methods: {
+                mudarcor() {     
+                    const  corRandom = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    return this.color = corRandom; 
+                }
+            },
+            
+        }); 
+
+
+       
+
+      
+
+    </script>
+     <style>
+       
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: monospace;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .column {
+            flex-direction: column;
+        }
+        li {
+            padding: 20px;
+            background: #84e;
+            color: white;
+            border-radius: 4px;
+            margin: 10px;
+            flex: 1;
+            text-align: center;
+        }
+    </style>
+</body>
+</html>

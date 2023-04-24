@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+
+   
+
+
+
+
+
+
+    <div id="exc">
+        <input v-model="nome" />
+        <textarea v-model="mensagem"></textarea>
+        <p>{{nome}}</p>
+        <p>{{mensagem}}</p>
+    </div>
+
+    <script>
+        
+        
+        const exc = new Vue({
+            el: "#exc",
+            data: {
+                nome: "ola",
+                mensagem: "escreva o nome"
+            }
+            
+        }); 
+
+
+       
+
+      
+
+    </script>
+     <style>
+       
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: monospace;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .column {
+            flex-direction: column;
+        }
+        li {
+            padding: 20px;
+            background: #84e;
+            color: white;
+            border-radius: 4px;
+            margin: 10px;
+            flex: 1;
+            text-align: center;
+        }
+    </style>
+</body>
+</html>

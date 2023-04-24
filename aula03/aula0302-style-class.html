@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+
+    <div id="app" >
+        <p :class="cor">texto azul</p>
+        <!-- Se ativo for TRUE coloca a classe estaAtivo, caso seja false nao coloca class-->
+        <p :class="{ ativo: estaAtivo, cor}">Texto Ativo</p>
+        <button @click="estaAtivo = !estaAtivo">Ativar / Desativar</button>
+    </div>
+
+
+
+    <div class="exercicio">
+        EXERCICIO
+    </div>
+
+
+
+    
+
+    <script>
+        
+        
+ 
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                instrumento: "Violão",
+                cor: "verde",
+                estaAtivo: true
+            },
+            
+        }); 
+
+       
+
+      
+
+    </script>
+     <style>
+        .exercicio{
+            background-color: white;
+            color: black;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px 0;
+        }
+        .vermelho{
+            color: red;
+        }
+        .verde{
+            color: green;
+        }
+        .ativo {
+            display: block;
+            background-color: red;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: monospace;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+        }
+        .column {
+            flex-direction: column;
+        }
+        li {
+            padding: 20px;
+            background: #84e;
+            color: white;
+            border-radius: 4px;
+            margin: 10px;
+            flex: 1;
+            text-align: center;
+        }
+    </style>
+</body>
+</html>
