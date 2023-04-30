@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size,
+  font-family,
+  text-align,
+  background,
+  color,
+  border-radius,
+
+  As escolhas serão feitas em campos de
+  formulário. Cada escolha deverá ser 
+  refletida em um elemento (o botão).
+
+
+  2 - Crie um formulário com, nome, email, telefone e mensagem.
+  Ao clicar em enviar, as informações preenchidas no formulário
+  devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+ -->
+
+
+<body >
+
+
+    <div id="exc"> 
+        <div>
+            <label for="background">background</label>
+            <input id="background" type="color" v-model="btn.background">
+            <br>
+            <label for="color">background</label>
+            <input id="color" type="color" v-model="btn.color">
+            <br>
+            <label for="width">width</label>
+            <input id="width" type="text" v-model="btn.width">
+            <br>
+            <label for="height">height</label>
+            <input id="height" type="text" v-model="btn.height">
+            <br>
+            <label for="fontSize">height</label>
+            <input id="fontSize" type="text" v-model="btn.fontSize">
+            <br>
+            <label for="fontFamily">height</label>
+            <input id="fontFamily" type="text" v-model="btn.fontFamily">
+            <br>
+            <label for="btn.textAlign">Alinhamento</label>
+            <select v-model="btn.textAlign" >
+                <option disabled value="" >Selecione um Alinhamento</option>
+                <option value="start">start</option>
+                <option value="center">center</option>
+                <option value="end">end</option>
+            </select>
+            <br>
+            <label for="border-radius">width</label>
+            <input id="border-radius" type="text" v-model="btn.borderRadius">
+            <br><br><br><br><br><br>
+            <a href="" :style="btn" submit.prevent="onSubmit">Clique Aqui</a>
+        </div>
+        <br><br><br><br><br><br>
+       
+        <div>
+            <form action="">
+                <label for="nome">nome</label>
+                <input id="nome" type="text" v-model="nome">
+                <br>
+                <label for="email">E-mail</label>
+                <input id="email" type="email" v-model="email">
+                <br>
+                <label for="telefone">Telefone</label>
+                <input id="telefone" type="phone" v-model="telefone">
+                <br>
+                <label for="mensagem">Mesagem</label>
+                <textarea id="mensagem" type="text" v-model="mensagem"></textarea>
+                <br>
+                <input type="submit" @click.prevent="enviarFormulario">
+            </form>
+            <ul>
+                <li v-for="(valor, chave) in resultado">{{chave}} : {{valor}}</li>
+            </ul>   
+
+                
+        </div>
+    </div>
+
+    <script>
+        
+        
+        const exc = new Vue({
+            el: "#exc",
+            data: {
+                btn: {
+                    background: '#f1ff17',
+                    width: "150px",
+                    height: "35px",        
+                    fontSize: "0.9rem",
+                    fontFamily: "'Courier New', Courier, monospace",
+                    textAlign: "center",
+                    color: '#000000',
+                    borderRadius: "10px",
+                },                
+                    nome: '',
+                    email: '',
+                    telefone: '',
+                    mensagem: '',
+              
+                resultado: {},
+            },
+            methods: {
+                enviarFormulario() {
+                    this.resultado = {
+                        nome: this.nome,
+                        telefone: this.telefone,
+                        email: this.email,
+                        mensagem: this.mensagem,
+                    }
+                }
+            }
+            
+        }); 
+
+
+       
+
+      
+
+    </script>
+     <style>
+       
+       label{
+        display: block;
+       
+       }
+       a{
+        display: block;
+       }
+    </style>
+</body>
+</html>

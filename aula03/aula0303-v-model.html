@@ -18,11 +18,40 @@
 
 
 
-    <div id="exc">
-        <input v-model="nome" />
+    <div id="exc"> 
+        <!--modificador LAZY que so alterar o campo quando sai da seleção-->
+        <input v-model.lazy="nome" />
         <textarea v-model="mensagem"></textarea>
         <p>{{nome}}</p>
         <p>{{mensagem}}</p>
+        <br>
+        <!--CheckBox-->
+        <input type="checkbox" v-model="receberEmail" id="receberEmail" />
+        <label for="receberEmail">Receber Email</label><br />
+        <input type="checkbox" v-model="termos" id="termos" />
+        <label for="termos">Termos e Condições</label>
+       
+        <br>
+        <p>receberEmail: {{receberEmail}}</p>
+        <p>termos: {{termos}}</p>
+        <!--radio-->
+        <br>
+        <input type="radio" v-model="cor" value="blue" id="azul" />
+        <label for="azul">Azul</label><br />
+        <input type="radio" v-model="cor" value="Vermelho" id="vermelho" />
+        <label for="vermelho">Vermelho</label>
+      
+        <p>cor: {{cor}}</p>
+        <br>
+        <div>
+            <select v-model="fruta" >
+                <option disabled value="" >Selecione uma fruta</option>
+                <option value="banana">Banana</option>
+                <option value="morango">Morango</option>
+                <option value="uva">Uva</option>
+            </select>
+            {{fruta}}
+        </div>
     </div>
 
     <script>
@@ -32,7 +61,12 @@
             el: "#exc",
             data: {
                 nome: "ola",
-                mensagem: "escreva o nome"
+                mensagem: "escreva o nome",
+                receberEmail: true,
+                termos: false,
+                cor: "",
+                fruta: ''
+
             }
             
         }); 

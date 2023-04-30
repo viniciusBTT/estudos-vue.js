@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+
+
+<body style="background-color: black; color: white;">
+
+   
+
+
+
+
+
+
+    <div id="app">
+       
+        {{mensagem}}
+
+        <button @click="contador++">{{contador}}</button>
+        <button @click="destruir">Destruir</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                mensagem: "Uma mensagem.",
+                dados: {},
+                contador: 5
+            },
+            methods: {
+                puxarApi() {
+                fetch("https://api.github.com/users/origamid")
+                    .then(r => r.json())
+                    .then(r => {
+                    this.dados = r;
+                    });
+                },
+                destruir() {
+                    this.$destroy();
+                }
+            },
+            //O beforeCreate é o primeiro método ativado, ele é ativado antes mesmo das propriedades de 
+            //data se tornarem reativas. Já no created, é possível ter acesso aos dados reativos.
+            //created é o Hook ideal para iniciarmos requisições fetch.
+            beforeCreate() {
+                console.log(this.mensagem);
+                // undefined
+            },
+            created() {
+                console.log(this.mensagem);
+                // "Uma mensagem."
+                this.puxarApi();
+            },
+            //O beforeMount acontece após o created. Em seguida o hook mounted acontece, durante essa fase o
+            //virtual dom é criado e podemos ter acesso ao this.$el.
+            //Ideal para quando queremos modificar o DOM ou adicionar eventos globais (scroll, keyup e outros).
+            beforeMount() {
+                console.log(this.$el);
+                // Template ainda não renderizado
+            },
+            mounted() {
+                console.log(this.$el);
+                // Template renderizado
+            },
+            //O beforeUpdate acontece sempre que houver uma mudança em um dado reativo.
+            //Em seguida o hook updated acontece, este após o dom ser modificado.
+            beforeUpdate() {
+                console.log(this.contador);
+            },
+            updated() {
+                console.log(this.contador);
+            },
+            //O beforeDestroy acontece antes do componente ser destruído. Em seguida o hook destroyed acontece,
+            // este após o componente ser destruído.
+            //É utilizado quando dividimos a interface em componentes, como veremos mais adiante.
+            beforeDestroy() {
+                console.log("Vai destruir");
+            },
+            destroyed() {
+                console.log("Destruiu");
+            }     
+        });
+
+
+       
+
+       
+
+      
+
+    </script>
+    <style>       
+
+     
+    </style>
+</body>
+</html>
